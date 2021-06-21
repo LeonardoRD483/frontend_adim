@@ -6,7 +6,7 @@ import ListaAlumnos from '../pages/ListaAlumnos';
 import FormularioAlumno from '../pages/FormularioAlumno';
 import logincito from '../pages/Login';
 import Registro from '../pages/registro';
-
+import MateriaRegistro from '../pages/FormularioRegistro';
 const RouterConfig = () => {
     return (
         <Switch>
@@ -21,7 +21,8 @@ const RouterConfig = () => {
             <Route path="/alumnos/edit/:id" component={FormularioAlumno}></Route>
             <Route path="/login/" component={logincito}></Route>
             <Route path="/registro/" component={Registro}></Route>
-        
+            <Route path="/create/" component={MateriaRegistro}></Route>
+
             <Route path="/alumnos">
                 <ListaAlumnos></ListaAlumnos>
             </Route>

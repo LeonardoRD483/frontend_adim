@@ -1,14 +1,59 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Card } from "react-bootstrap";
 import { useHistory } from "react-router";
 import Label from "../components/Label";
+import { Card, Col, Row } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+
 const Registro = (props) => {
+    const [listaregistro, setListaregistro] = useState([])
+    useEffect(() => {
+        fetchlista()
+    }, [])
+
+    const fetchlista = () => {
+        const url = 'http://127.0.0.1:8000/api/administrador';
+        axios.get(url)
+            .then(result => {
+                console.log(result.data);
+                setListaregistro(result.data.data);
+            }).catch(error => {
+                console.log(error);
+            });
+    }
     return (
-        <div>
-            hola mundo
-        </div>
-      );
+        <Row className="mt-3">
+            <Col>
+                <Card>
+                    <Card.Body>
+                        <Card.Title>Lista de Registro</Card.Title>
+                        <div>
+                            <table className="table">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>user_id</th>
+                                        <th>materia_id</th>
+                                  
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {listaregistro.map(item =>
+                                        <tr key={"item-" + item.id}>
+                                            <td>{item.user_id}</td>
+                                            <td>{item.materia_id}</td>
+                                        </tr>
+                                    )}
+
+                                </tbody>
+                            </table>
+                        </div>
+                        <Link className="btn btn-primary" to={"/create/"}>Agregar</Link>
+                    </Card.Body>
+                </Card>
+            </Col>
+        </Row>
+    );
 }
 
 export default Registro;
