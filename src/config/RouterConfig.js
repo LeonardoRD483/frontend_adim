@@ -5,6 +5,7 @@ import ListaPersonas from '../pages/ListaMaterias';
 import ListaAlumnos from '../pages/ListaAlumnos';
 import FormularioAlumno from '../pages/FormularioAlumno';
 import logincito from '../pages/Login';
+import Registro from '../pages/registro';
 
 const RouterConfig = () => {
     return (
@@ -19,6 +20,7 @@ const RouterConfig = () => {
             <Route path="/personas/edit/:id" component={FormularioPersona}></Route>
             <Route path="/alumnos/edit/:id" component={FormularioAlumno}></Route>
             <Route path="/login/" component={logincito}></Route>
+            <Route path="/registro/" component={Registro}></Route>
         
             <Route path="/alumnos">
                 <ListaAlumnos></ListaAlumnos>
