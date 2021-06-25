@@ -16,7 +16,11 @@ const FormularioAlumno = (props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [tipo, setTipo] = useState("");
-useEffect(() => {
+
+  useEffect(() => {
+    if (!sessionStorage.getItem("key")) {
+      history.push("/login");
+    }
     if (id === 0) {
       return;
     }
@@ -24,8 +28,7 @@ useEffect(() => {
   }, [id]);
 
   const fetchDatosPersona = (id) => {
-    const url =
-      "http://127.0.0.1:8000/api/alumnos/" + id;
+    const url = "http://127.0.0.1:8000/api/alumnos/" + id;
     axios
       .get(url)
       .then((result) => {
@@ -58,7 +61,7 @@ useEffect(() => {
       edad,
       email,
       password,
-      tipo
+      tipo,
     };
     if (id == 0) {
       insertarPersona(parametros);
@@ -66,9 +69,8 @@ useEffect(() => {
       actualizarPersona(parametros);
     }
   };
-   const actualizarPersona = (parametros) => {
-    const url =
-      "http://127.0.0.1:8000/api/alumnos/" + id;
+  const actualizarPersona = (parametros) => {
+    const url = "http://127.0.0.1:8000/api/alumnos/" + id;
     console.log(parametros);
     axios
       .put(url, parametros)
@@ -146,7 +148,7 @@ useEffect(() => {
                 value={telefono}
               />
 
-            <Label texto="Carnet:"></Label>
+              <Label texto="Carnet:"></Label>
               <input
                 type="text"
                 className="form-control"
@@ -156,7 +158,7 @@ useEffect(() => {
                 value={carnet}
               />
 
-            <Label texto="Sexo:"></Label>
+              <Label texto="Sexo:"></Label>
               <input
                 type="text"
                 className="form-control"
@@ -166,7 +168,7 @@ useEffect(() => {
                 value={sexo}
               />
 
-            <Label texto="Edad:"></Label>
+              <Label texto="Edad:"></Label>
               <input
                 type="text"
                 className="form-control"

@@ -6,8 +6,12 @@ import { Card, Col, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
 const Registro = (props) => {
+    const history = useHistory();
     const [listaregistro, setListaregistro] = useState([])
     useEffect(() => {
+        if (!sessionStorage.getItem("key")) {
+            history.push("/login");
+          }
         fetchlista()
     }, [])
 
@@ -40,6 +44,7 @@ const Registro = (props) => {
                                 <tbody>
                                     {listaregistro.map(item =>
                                         <tr key={"item-" + item.id}>
+                                            <td>{item.id}</td>
                                             <td>{item.user_id}</td>
                                             <td>{item.materia_id}</td>
                                         </tr>

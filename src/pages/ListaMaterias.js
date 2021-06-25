@@ -3,9 +3,16 @@ import moment from 'moment';
 import React, { useEffect, useState } from 'react';
 import { Card, Col, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import { useHistory } from "react-router";
+
+
 const ListaPersonas = () => {
+    const history = useHistory();
     const [listaPersonas, setListaPersonas] = useState([]);
     useEffect(() => {
+        if (!sessionStorage.getItem("key")) {
+            history.push("/login");
+          }
         fetchListaPersonas();
     }, [])
 
@@ -52,13 +59,13 @@ const ListaPersonas = () => {
             <Col>
                 <Card>
                     <Card.Body>
-                        <Card.Title>Lista de Personas</Card.Title>
+                        <Card.Title>Lista de Materias!</Card.Title>
                         <div>
                             <table className="table">
                                 <thead>
                                     <tr>
                                         <th>ID</th>
-                                        <th>Nombres</th>
+                                        <th>Codigo</th>
                                         <th>Apellidos</th>
                                         <th>Ciudad</th>
                                         <th>Edad</th>

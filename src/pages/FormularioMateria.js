@@ -12,6 +12,9 @@ const FormularioPersona = (props) => {
   const [costo, setCosto] = useState("");
 
   useEffect(() => {
+    if (!sessionStorage.getItem("key")) {
+      history.push("/login");
+    }
     if (id === 0) {
       return;
     }
@@ -19,8 +22,7 @@ const FormularioPersona = (props) => {
   }, [id]);
 
   const fetchDatosPersona = (id) => {
-    const url =
-      "http://127.0.0.1:8000/api/materias/" +id;
+    const url = "http://127.0.0.1:8000/api/materias/" + id;
     axios
       .get(url)
       .then((result) => {
@@ -30,7 +32,7 @@ const FormularioPersona = (props) => {
         setNombre(objPersona.nombre);
         setSemestre(objPersona.semestre);
         setCosto(objPersona.costo);
-        console.log(result)
+        console.log(result);
       })
       .catch((error) => {
         console.log("error", error);
@@ -51,8 +53,7 @@ const FormularioPersona = (props) => {
     }
   };
   const actualizarPersona = (parametros) => {
-    const url =
-      "http://127.0.0.1:8000/api/materias/" +id;
+    const url = "http://127.0.0.1:8000/api/materias/" + id;
     console.log(parametros);
     axios
       .put(url, parametros)

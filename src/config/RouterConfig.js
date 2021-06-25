@@ -19,7 +19,7 @@ const RouterConfig = () => {
             <Route path="/alumnos/create"><FormularioAlumno></FormularioAlumno></Route>
             <Route path="/personas/edit/:id" component={FormularioPersona}></Route>
             <Route path="/alumnos/edit/:id" component={FormularioAlumno}></Route>
-            <Route path="/login/" component={logincito}></Route>
+            <Route path="/login" component={logincito}></Route>
             <Route path="/registro/" component={Registro}></Route>
             <Route path="/create/" component={MateriaRegistro}></Route>
 

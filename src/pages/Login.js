@@ -6,16 +6,9 @@ import Label from "../components/Label";
 
 const Login = (props) => {
   const history = useHistory();
-  const { id } = props.match ? props.match.params : { id: 0 };
 
   const [codigo, setCodigo] = useState("");
   const [password, setPassword] = useState("");
-
-  useEffect(() => {
-    if (id === 0) {
-      return;
-    }
-  }, [id]);
 
   const clickBoton = () => {
     const parametros = {
@@ -32,18 +25,17 @@ const Login = (props) => {
       .post(url, parametros)
       .then((result) => {
         console.log("result", result.data.data[0].tipo);
-        if(result.data.data[0].tipo == 1){
-            history.push("/alumnos");
-        }else {
-            history.push("/registrar");
+        if (result.data.data[0].tipo == 1) {
+          sessionStorage.setItem("key", "accesso");
+          history.push("/alumnos");
+          console.log("entro aqui");
+        } else {
+          history.push("/registro");
         }
-     
       })
       .catch((error) => {
         console.log("error", error);
-        alert(
-          "Hubo un error al insertar datos, por favor intente nuevamente."
-        );
+        alert("Hubo un error al insertar datos, por favor intente nuevamente.");
       });
   };
 
@@ -55,7 +47,6 @@ const Login = (props) => {
             <Card.Title>L O G I N</Card.Title>
 
             <div>
-              
               <Label texto="Codigo:"></Label>
               <input
                 type="text"
@@ -74,7 +65,7 @@ const Login = (props) => {
                 }}
                 value={password}
               />
-              
+
               <div>
                 <button className="btn btn-primary" onClick={clickBoton}>
                   Guardar datos
