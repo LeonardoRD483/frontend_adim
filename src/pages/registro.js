@@ -27,7 +27,7 @@ const Registro = (props) => {
     }
     const clickBoton = () =>{
         sessionStorage.clear()
-        history.push("login")
+        history.push("/login")
     }
     return (
         <Row className="mt-3">

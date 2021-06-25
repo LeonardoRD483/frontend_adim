@@ -18,23 +18,27 @@ const MateriaRegistro = () => {
       );
       console.log("llego a  6");
     } else {
-      let obj = {
-        user_id: 1,
-        materia_id: event.target.value,
-      };
-      const url = "http://127.0.0.1:8000/api/administrador";
-      axios
-        .post(url, obj)
-        .then((result) => {
-          console.log("result", result.data.data);
-          //       history.push("/materias");
-        })
-        .catch((error) => {
-          console.log("error", error);
-          alert(
-            "Hubo un error al insertar persona, por favor intente nuevamente."
-          );
-        });
+      const confirmar = window.confirm('¿Insertar Uno Nuevo?');
+      if(confirmar){
+        let obj = {
+          user_id: 1,
+          materia_id: event.target.value,
+        };
+        const url = "http://127.0.0.1:8000/api/administrador";
+        axios
+          .post(url, obj)
+          .then((result) => {
+            console.log("result", result.data.data);
+            //       history.push("/materias");
+          })
+          .catch((error) => {
+            console.log("error", error);
+            alert(
+              "Hubo un error al insertar persona, por favor intente nuevamente."
+            );
+          });
+      }
+      
     }
     console.log(event.target.value);
   };
