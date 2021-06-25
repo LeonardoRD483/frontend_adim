@@ -10,7 +10,6 @@ import { Container } from 'react-bootstrap';
 function App() {
   return (
     <BrowserRouter>
-      <Header></Header>
       <Container>
         <RouterConfig></RouterConfig>
       </Container>

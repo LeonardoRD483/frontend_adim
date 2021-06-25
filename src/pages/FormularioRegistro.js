@@ -4,16 +4,18 @@ import { useHistory } from "react-router";
 import Label from "../components/Label";
 import { Card, Col, NavItem, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
-
+import Header from "../components/Header";
 const MateriaRegistro = () => {
+  const history = useHistory();
+
   let i = 0;
   const handleChange = (event, value) => {
     i++;
     console.log(i);
     if (i > 6) {
-        alert(
-            "llegaste a lo maximo"
-          );
+      alert(
+        "llegaste a lo maximo"
+      );
       console.log("llego a  6");
     } else {
       let obj = {
@@ -39,7 +41,9 @@ const MateriaRegistro = () => {
 
   const [listamateria, setListamaterias] = useState([]);
   useEffect(() => {
-      
+    if (!sessionStorage.getItem("key")) {
+      history.push("/login");
+    }
     fetchlista();
   }, []);
 
@@ -55,21 +59,30 @@ const MateriaRegistro = () => {
         console.log(error);
       });
   };
-
+  const clickBoton = () => {
+    sessionStorage.clear()
+    history.push("/login");
+  }
   return (
     <div>
-      <label>
-        Selecionar Materia:
-        <select onChange={handleChange}>
-          {listamateria.map((item) => (
-            <option key={"item" + item.id} value={item.id}>
-              {item.nombre}
-            </option>
-          ))}
-        </select>
-      </label>
-      <Link className="btn btn-primary" to={"/registro/"}>Volver a lista de tus registros</Link>
+      <button className="btn btn-primary" onClick={clickBoton}>
+        Cerrar Sesion
+      </button>
+      <div>
+        <label>
+          Selecionar Materia:
+          <select onChange={handleChange}>
+            {listamateria.map((item) => (
+              <option key={"item" + item.id} value={item.id}>
+                {item.nombre}
+              </option>
+            ))}
+          </select>
+        </label>
+        <Link className="btn btn-primary" to={"/registro/"}>Volver a lista de tus registros</Link>
+      </div>
     </div>
+
   );
 };
 export default MateriaRegistro;

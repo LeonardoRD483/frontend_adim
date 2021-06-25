@@ -3,6 +3,8 @@ import React, { useEffect, useState } from "react";
 import { Card } from "react-bootstrap";
 import { useHistory } from "react-router";
 import Label from "../components/Label";
+import Header from "../components/Header";
+
 const FormularioAlumno = (props) => {
   const history = useHistory();
   const { id } = props.match ? props.match.params : { id: 0 };
@@ -86,7 +88,7 @@ const FormularioAlumno = (props) => {
       });
   };
   const insertarPersona = (parametros) => {
-    const url = "http://127.0.0.1:8000/api/alumnos/";
+    const url = "http://127.0.0.1:8000/api/alumnos";
     console.log(parametros);
     axios
       .post(url, parametros)
@@ -103,117 +105,122 @@ const FormularioAlumno = (props) => {
   };
 
   return (
-    <div className="row mt-3">
-      <div className="col-6 offset-3">
-        <Card>
-          <Card.Body>
-            <Card.Title>Formulario de alumnos</Card.Title>
+    <div>
+      <Header></Header>
+      <div className="row mt-3">
 
-            <div>
-              <Label texto="Codigo:"></Label>
-              <input
-                onChange={(e) => {
-                  setCodigo(e.currentTarget.value);
-                }}
-                value={codigo}
-                type="text"
-                className="form-control"
-              />
-              <div>{codigo}</div>
-              <Label texto="Nombre_Completo:"></Label>
-              <input
-                onChange={(e) => {
-                  setNombre_Completo(e.currentTarget.value);
-                }}
-                value={nombre_completo}
-                type="text"
-                className="form-control"
-              />
-              <Label texto="Direccion:"></Label>
-              <input
-                type="text"
-                className="form-control"
-                onChange={(e) => {
-                  setDireccion(e.currentTarget.value);
-                }}
-                value={direccion}
-              />
-              <Label texto="Telefono:"></Label>
-              <input
-                type="text"
-                className="form-control"
-                onChange={(e) => {
-                  setTelefono(e.currentTarget.value);
-                }}
-                value={telefono}
-              />
+        <div className="col-6 offset-3">
+          <Card>
+            <Card.Body>
+              <Card.Title>Formulario de alumnos</Card.Title>
 
-              <Label texto="Carnet:"></Label>
-              <input
-                type="text"
-                className="form-control"
-                onChange={(e) => {
-                  setCarnet(e.currentTarget.value);
-                }}
-                value={carnet}
-              />
-
-              <Label texto="Sexo:"></Label>
-              <input
-                type="text"
-                className="form-control"
-                onChange={(e) => {
-                  setSexo(e.currentTarget.value);
-                }}
-                value={sexo}
-              />
-
-              <Label texto="Edad:"></Label>
-              <input
-                type="text"
-                className="form-control"
-                onChange={(e) => {
-                  setEdad(e.currentTarget.value);
-                }}
-                value={edad}
-              />
-              <Label texto="Email:"></Label>
-              <input
-                type="text"
-                className="form-control"
-                onChange={(e) => {
-                  setEmail(e.currentTarget.value);
-                }}
-                value={email}
-              />
-              <Label texto="Password:"></Label>
-              <input
-                type="text"
-                className="form-control"
-                onChange={(e) => {
-                  setPassword(e.currentTarget.value);
-                }}
-                value={password}
-              />
-              <Label texto="Tipo:"></Label>
-              <input
-                type="text"
-                className="form-control"
-                onChange={(e) => {
-                  setTipo(e.currentTarget.value);
-                }}
-                value={tipo}
-              />
               <div>
-                <button className="btn btn-primary" onClick={clickBoton}>
-                  Guardar datos
-                </button>
+                <Label texto="Codigo:"></Label>
+                <input
+                  onChange={(e) => {
+                    setCodigo(e.currentTarget.value);
+                  }}
+                  value={codigo}
+                  type="text"
+                  className="form-control"
+                />
+                <div>{codigo}</div>
+                <Label texto="Nombre_Completo:"></Label>
+                <input
+                  onChange={(e) => {
+                    setNombre_Completo(e.currentTarget.value);
+                  }}
+                  value={nombre_completo}
+                  type="text"
+                  className="form-control"
+                />
+                <Label texto="Direccion:"></Label>
+                <input
+                  type="text"
+                  className="form-control"
+                  onChange={(e) => {
+                    setDireccion(e.currentTarget.value);
+                  }}
+                  value={direccion}
+                />
+                <Label texto="Telefono:"></Label>
+                <input
+                  type="text"
+                  className="form-control"
+                  onChange={(e) => {
+                    setTelefono(e.currentTarget.value);
+                  }}
+                  value={telefono}
+                />
+
+                <Label texto="Carnet:"></Label>
+                <input
+                  type="text"
+                  className="form-control"
+                  onChange={(e) => {
+                    setCarnet(e.currentTarget.value);
+                  }}
+                  value={carnet}
+                />
+
+                <Label texto="Sexo:"></Label>
+                <input
+                  type="text"
+                  className="form-control"
+                  onChange={(e) => {
+                    setSexo(e.currentTarget.value);
+                  }}
+                  value={sexo}
+                />
+
+                <Label texto="Edad:"></Label>
+                <input
+                  type="text"
+                  className="form-control"
+                  onChange={(e) => {
+                    setEdad(e.currentTarget.value);
+                  }}
+                  value={edad}
+                />
+                <Label texto="Email:"></Label>
+                <input
+                  type="text"
+                  className="form-control"
+                  onChange={(e) => {
+                    setEmail(e.currentTarget.value);
+                  }}
+                  value={email}
+                />
+                <Label texto="Password:"></Label>
+                <input
+                  type="text"
+                  className="form-control"
+                  onChange={(e) => {
+                    setPassword(e.currentTarget.value);
+                  }}
+                  value={password}
+                />
+                <Label texto="Tipo:"></Label>
+                <input
+                  type="text"
+                  className="form-control"
+                  onChange={(e) => {
+                    setTipo(e.currentTarget.value);
+                  }}
+                  value={tipo}
+                />
+                <div>
+                  <button className="btn btn-primary" onClick={clickBoton}>
+                    Guardar datos
+                  </button>
+                </div>
               </div>
-            </div>
-          </Card.Body>
-        </Card>
+            </Card.Body>
+          </Card>
+        </div>
       </div>
     </div>
+
   );
 };
 

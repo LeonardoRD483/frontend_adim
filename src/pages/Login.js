@@ -30,6 +30,7 @@ const Login = (props) => {
           history.push("/alumnos");
           console.log("entro aqui");
         } else {
+          sessionStorage.setItem("key", "accesso");
           history.push("/registro");
         }
       })

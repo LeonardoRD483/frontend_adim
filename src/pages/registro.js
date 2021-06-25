@@ -11,7 +11,7 @@ const Registro = (props) => {
     useEffect(() => {
         if (!sessionStorage.getItem("key")) {
             history.push("/login");
-          }
+        }
         fetchlista()
     }, [])
 
@@ -25,8 +25,15 @@ const Registro = (props) => {
                 console.log(error);
             });
     }
+    const clickBoton = () =>{
+        sessionStorage.clear()
+        history.push("login")
+    }
     return (
         <Row className="mt-3">
+            <button className="btn btn-primary" onClick={clickBoton}>
+                Cerrar Sesion
+            </button>
             <Col>
                 <Card>
                     <Card.Body>
@@ -38,7 +45,7 @@ const Registro = (props) => {
                                         <th>ID</th>
                                         <th>user_id</th>
                                         <th>materia_id</th>
-                                  
+
                                     </tr>
                                 </thead>
                                 <tbody>

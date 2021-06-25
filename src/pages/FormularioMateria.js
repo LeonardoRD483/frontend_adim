@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { Card } from "react-bootstrap";
 import { useHistory } from "react-router";
 import Label from "../components/Label";
+import Header from "../components/Header";
 const FormularioPersona = (props) => {
   const history = useHistory();
   const { id } = props.match ? props.match.params : { id: 0 };
@@ -86,7 +87,10 @@ const FormularioPersona = (props) => {
   };
 
   return (
-    <div className="row mt-3">
+    <div>
+      <Header>
+      </Header>
+      <div className="row mt-3">
       <div className="col-6 offset-3">
         <Card>
           <Card.Body>
@@ -141,6 +145,8 @@ const FormularioPersona = (props) => {
         </Card>
       </div>
     </div>
+    </div>
+  
   );
 };
 
